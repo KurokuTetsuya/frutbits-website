@@ -16,5 +16,5 @@ RUN echo [INFO] ✨ Installing build deps.. \
     && yarn install --production \
     && apk del .build-deps
 
-EXPOSE 8080
+EXPOSE 8081
 CMD ["node", "index"]
