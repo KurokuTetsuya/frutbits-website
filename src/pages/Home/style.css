@@ -1,0 +1,34 @@
+.head {
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: 700;
+    color: #fff;
+    line-height: 1em;
+}
+#header {
+    display: flex; 
+    justify-content: space-between;
+    margin: 50px;
+}
+
+#footer {
+    margin: 50px;
+    margin-bottom: 0;
+}
+
+body {
+    background-image: url("/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav {
+    background-color: transparent;
+    margin-left: 35px;
+}
+
+.icon {
+    border-radius: 15%;
+}
