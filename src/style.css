@@ -1,0 +1,45 @@
+nav {
+    margin-left: 35px;
+    background-color: transparent;
+}
+
+.icon {
+    border-radius: 15%;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    width: 100%; 
+}
+@media screen and (max-height: 640px) {
+    html, body {
+        height: auto;
+        min-height: 100%; 
+    } 
+}
+@media screen and (max-width: 1680px) {
+    body, input, select, textarea {
+      font-size: 12pt; 
+    } 
+}
+@media screen and (max-width: 1280px) {
+    body, input, select, textarea {
+      font-size: 11pt; 
+    } 
+}
+@media screen and (max-width: 980px) {
+    body, input, select, textarea {
+      font-size: 12pt; 
+    } 
+}
+@media screen and (max-width: 736px) {
+    body, input, select, textarea {
+      font-size: 12pt; 
+    } 
+}
+@media screen and (max-width: 480px) {
+    body, input, select, textarea {
+      font-size: 12pt; 
+    } 
+}

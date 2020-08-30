@@ -14,21 +14,17 @@ h1 {
 }
 
 #footer {
-    margin: 50px;
-    margin-bottom: 0;
+    position: relative;
 }
 
-body {
-    background-image: url("/bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+#footer:hover {
+    color: #7289DA;
 }
 
-nav {
-    background-color: transparent;
-    margin-left: 35px;
+#widget {
+    position: relative;
 }
 
-.icon {
-    border-radius: 15%;
+#btn {
+    border-radius: 20px;
 }
