@@ -56,11 +56,16 @@ class Staff extends React.Component {
                 </div>
             )
         }
-        if (!isLoaded) return <h1 className="text-center text-white"> Loading..</h1>
+        if (!isLoaded) return (
+            <div className="container">
+                    <div className="staff-list mt-5 mb-5 text-center text-white">
+                        <h1>Loading...</h1>
+                    </div>
+            </div>
+        )
         return (
             <body>
                 <div className="container">
-                    <br/>
                     <div className="staff-list mt-5 mb-5 text-center text-white">
                         <h1>Staff Team</h1>
                         <section className="p-md-3 mx-md-5 text-lg-left">

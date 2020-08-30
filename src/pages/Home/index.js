@@ -15,9 +15,6 @@ export default function Home() {
                     <iframe id="widget" src="https://discordapp.com/widget?id=715165490246582313&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                 </div>
             </header>
-            <div className="text-center">
-                <a id="btn" className="btn btn-info" href="/discord">Join Now!</a>
-            </div>
             <footer id="footer" className="page-footer text-center py-2">
                 <p className="my-1">&copy; Frutbits Indonesia All Right Reserved.</p>
             </footer>
