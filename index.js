@@ -12,7 +12,7 @@ app.listen(PORT, () => {
     console.log(`[${new Date().toString().split(" ", 5).join(" ")}] Listening to http://localhost:${PORT}/`);
 });
 
-app.get("/", (request, response) => {
+app.get("/*", (request, response) => {
     response.status(200).sendFile(join(__dirname, "build", "index.html"));
 });
 

@@ -14,7 +14,9 @@ RUN echo [INFO] ✨ Installing build deps.. \
     && yarn install \
     && echo [INFO] 🗑️ Cleanning Dev dependencies.. \
     && yarn install --production \
-    && apk del .build-deps
+    && apk del .build-deps \
+    && echo [INFO] 📌 Building sources.. \
+    && yarn build
 
 EXPOSE 8081
 CMD ["node", "index"]
