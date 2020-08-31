@@ -14,7 +14,7 @@ function App() {
     return (
         <body className="text-white">
             <nav className="navbar navbar-expand-sm navbar-dark">
-                <a className="navbar-brand" href="/"><a><img className="icon" src={process.env.PUBLIC_URL + "/logo512.png"} alt="logo" width="30px" height="30px"></img></a></a>
+                <a className="navbar-brand" href="/"><a href="/"><img className="icon" src={process.env.PUBLIC_URL + "/logo512.png"} alt="logo" width="30px" height="30px"></img></a></a>
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item-active">
@@ -24,7 +24,7 @@ function App() {
                             <a className="nav-link" href="/staff">Staff</a>
                         </li>
                         <li className="nav-item-active">
-                            <a className="nav-link" href="https://bin.frutbits.xyz" target="_blank">Hastebin</a>
+                            <a className="nav-link" href="https://bin.frutbits.xyz" target="_blank" rel="noopener noreferrer">Hastebin</a>
                         </li>
                     </ul>
                 </div>

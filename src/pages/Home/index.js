@@ -4,15 +4,15 @@ import "bootswatch/dist/flatly/bootstrap.min.css";
 
 export default function Home() {
     return (
-        <body class="bg-dark">
+        <body className="bg-dark">
             <header id="header">
-                <div class="head">
+                <div className="head">
                     <h1>FrutBits Indonesia</h1>
                     <p>Sebuah komunitas Discord dari Indonesia bertemakan<br />
                     general, gaming dan lain lain!</p>
                 </div>
                 <div>
-                    <iframe id="widget" src="https://discordapp.com/widget?id=715165490246582313&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    <iframe title="discord" id="widget" src="https://discordapp.com/widget?id=715165490246582313&theme=dark" width="350" height="400" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                 </div>
             </header>
             <footer id="footer" className="page-footer text-center py-2">

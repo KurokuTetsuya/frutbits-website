@@ -44,7 +44,7 @@ class Staff extends React.Component {
     render() {
         const { error, isLoaded, owners, staff } = this.state;
         console.log(this.state);
-        if (error) {
+        if (error || !owners.list || !staff.list) {
             return (
                 <div className="jumbotron">
                     <h1 className="display-3">Error</h1>
