@@ -84,10 +84,10 @@ class App extends React.Component {
                             </li>
                         </ul>
                     </div>
-                    {this.state.authenticated ? (
+                    {this.state.authenticated && this.state.user ? (
                         <div>
                     <h1>{this.state.user.username}#{this.state.user.discriminator}</h1>
-                    <a className="btn btn-secondary my-2 my-sm-0" href="/auth/login">Login</a></div>) : (<a className="btn btn-secondary my-2 my-sm-0" href="/auth/logout">Logout</a>)}
+                    <a className="btn btn-secondary my-2 my-sm-0" href="/auth/logout">Logout</a></div>) : (<a className="btn btn-secondary my-2 my-sm-0" href="/auth/login">Login</a>)}
                 </nav>
                 <div className="bg-dark">
                     <Router>
