@@ -11,7 +11,7 @@ import Staff from "./pages/Staff";
 import Home from "./pages/Home";
 import NotFound from "./pages/404";
 
-const BASE_URL ="http://localhost:8081";
+const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8081" : "https://frutbits.xyz";
 
 class App extends React.Component {
     constructor(props) {

@@ -19,4 +19,4 @@ RUN echo [INFO] ✨ Installing build deps.. \
     && yarn build
 
 EXPOSE 8081
-CMD ["node", "index"]
+CMD ["node", "server"]
