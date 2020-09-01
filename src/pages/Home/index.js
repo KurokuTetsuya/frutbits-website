@@ -15,8 +15,10 @@ export default function Home() {
                     <iframe title="discord" id="widget" src="https://discordapp.com/widget?id=715165490246582313&theme=dark" width="350" height="400" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                 </div>
             </header>
-            <footer id="footer" className="page-footer text-center py-2">
-                <p className="my-1">&copy; Frutbits Indonesia All Right Reserved.</p>
+            <footer id="footer" className="page-footer font-small pt-5">
+                <div className="footer-copyright text-center py-3">
+                    &copy; Frutbits Indonesia All Right Reserved.
+                </div>
             </footer>
         </body>
     )

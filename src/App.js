@@ -5,13 +5,14 @@ import "bootswatch/dist/superhero/bootstrap.min.css";
 import "./style.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { get } from "superagent";
+import swal from "sweetalert";
+import { baseUrl as BASE_URL } from "./config.json";
 
 // Component
 import Staff from "./pages/Staff";
 import Home from "./pages/Home";
 import NotFound from "./pages/404";
-
-const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8081" : "https://frutbits.xyz";
+import Invite from './pages/Invite';
 
 class App extends React.Component {
     constructor(props) {
@@ -41,6 +42,30 @@ class App extends React.Component {
         });
     }
 
+    handleClick(e) {
+        e.preventDefault();
+        swal({
+            title: "Are you sure want to logout?",
+            text: "It means, you have to login when you want to access your information.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then((yes) => {
+            if (yes) {
+                swal("Okay, redirecting you...", {
+                    icon: "success",
+                    timer: 2000
+                }).then(() => {
+                    window.location = `${BASE_URL}/auth/logout`
+                })
+            } else {
+                swal("Canceled!", {
+                    icon: "success",
+                    timer: 1000
+                });
+            }
+        })
+    }
     render() {
         if (!this.state.isLoaded) return (
             <body className="text-white">
@@ -55,6 +80,9 @@ class App extends React.Component {
                                 <a className="nav-link" href="/staff">Staff</a>
                             </li>
                             <li className="nav-item-active">
+                                <a className="nav-link" href="/invites">Invite Leaderboard</a>
+                            </li>
+                            <li className="nav-item-active">
                                 <a className="nav-link" href="https://bin.frutbits.xyz" target="_blank" rel="noopener noreferrer">Hastebin</a>
                             </li>
                         </ul>
@@ -65,8 +93,7 @@ class App extends React.Component {
                     <h1>Loading...</h1>
                 </div>
             </body>
-        )
-        console.log(this.state.user);
+        );
         return (
             <body className="text-white">
                 <nav className="navbar navbar-expand-sm navbar-dark">
@@ -80,14 +107,16 @@ class App extends React.Component {
                                 <a className="nav-link" href="/staff">Staff</a>
                             </li>
                             <li className="nav-item-active">
+                                <a className="nav-link" href="/invites">Invite Leaderboard</a>
+                            </li>
+                            <li className="nav-item-active">
                                 <a className="nav-link" href="https://bin.frutbits.xyz" target="_blank" rel="noopener noreferrer">Hastebin</a>
                             </li>
                         </ul>
                     </div>
                     {this.state.authenticated && this.state.user ? (
-                        <div>
-                    <h1>{this.state.user.username}#{this.state.user.discriminator}</h1>
-                    <a className="btn btn-secondary my-2 my-sm-0" href="/auth/logout">Logout</a></div>) : (<a className="btn btn-secondary my-2 my-sm-0" href="/auth/login">Login</a>)}
+                        <button id="lglt" onClick={this.handleClick} className="nav-link">{this.state.user.username}#{this.state.user.discriminator}</button>   
+                    ) : (<a id="lglt" className="nav-link text-white" href="/auth/login"><b>Login</b></a>)}
                 </nav>
                 <div className="bg-dark">
                     <Router>
@@ -97,6 +126,9 @@ class App extends React.Component {
                             </Route>
                             <Route path="/staff">
                                 <Staff />
+                            </Route>
+                            <Route path="/invites">
+                                <Invite />
                             </Route>
                             <Route path="*">
                                 <NotFound />

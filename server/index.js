@@ -8,6 +8,7 @@ const { Strategy } = require("passport-discord");
 const passport = require("passport")
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
+const serverConfig = require("../src/config.json");
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -18,7 +19,7 @@ passport.deserializeUser((obj, done) => {
 passport.use(new Strategy({
     clientID,
     clientSecret,
-    callbackURL: process.env.NODE_ENV === "development" ? `http://localhost:${PORT}/auth/callback` : "https://frutbits.xyz/auth/callback",
+    callbackURL: process.env.NODE_ENV === "development" ? `http://localhost:${PORT}/auth/callback` : `${serverConfig.baseUrl}/auth/callback`,
     scope: ["identify"]
 }, (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
@@ -43,24 +44,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
-    res.setHeader("Access-Control-Allow-Origin", process.env.DEV ? `http://localhost:${PORT}` : "https://frutbits.xyz/");
+    res.setHeader("Access-Control-Allow-Origin", process.env.NODE_ENV ? `http://localhost:${PORT}` : serverConfig.baseUrl);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
     res.setHeader("Access-Control-Allow-Credentials", true);
     next();
 });
 
-app.get("/", (request, response) => {
-    response.status(200).sendFile(resolve(__dirname, "..", "build", "index.html"));
-});
-
-app.get("/staff", (request, response) => {
-    response.status(200).sendFile(resolve(__dirname, "..", "build", "index.html"));
-});
+app.get("/", performReactPage);
+app.get("/staff", performReactPage);
+app.get("/invites", performReactPage);
+app.get("/404", performReactPage);
 
 // Redirect Routes
 app.get("/discord", (request, response) => response.status(200).redirect("https://discord.gg/fD5MHy9"));
 app.get("/leaderboard", (request, response) => response.status(200).redirect("https://arcanebot.xyz/leaderboard/frutbits"));
-
 
 // OAuth Routes
 app.get("/auth/login", passport.authenticate("discord", { scope: ["identify"] }));
@@ -81,6 +78,15 @@ app.get("/auth/info", (req, res) => {
     else res.send("Not logged in.");
 });
 
+// 404 Routing. Keep this as the last route.
+app.get("*", (request, response) => {
+    return response.status(404).redirect("/404");
+});
+
 app.listen(PORT, () => {
     console.log(`[${new Date().toString().split(" ", 5).join(" ")}] Listening to http://localhost:${PORT}/`);
 });
+
+function performReactPage(request, response, next) {
+    return response.status(/404/g.exec(request.route) ? 404 : 200).sendFile(resolve(__dirname, "..", "build", "index.html"));
+}

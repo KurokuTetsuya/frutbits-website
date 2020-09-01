@@ -19,31 +19,15 @@ class Staff extends React.Component {
         
     }
 
-    componentDidMount() {
-        get(`https://api.frutbits.xyz/staffList?role=${roles.owner}`).then((resO) => {
-            get(`https://api.frutbits.xyz/staffList?role=${roles.staff}`).then((res) => {
-                this.setState({
-                    isLoaded: true,
-                    staff: res.body,
-                    owners: resO.body
-                });
-            }).catch(error => {
-                this.setState({
-                    isLoaded: false,
-                    error
-                });
-            });
-        }).catch(error => {
-            this.setState({
-                isLoaded: false,
-                error
-            });
+    async componentDidMount() {
+        const { body: owners } = await get(`https://api.frutbits.xyz/staffList?role=${roles.owner}`);
+        const { body: staff } = await get(`https://api.frutbits.xyz/staffList?role=${roles.staff}`);
+        this.setState({
+            isLoaded: true, staff, owners
         });
-        
     }
     render() {
         const { error, isLoaded, owners, staff } = this.state;
-        console.log(this.state);
         if (error || !owners.list || !staff.list) {
             return (
                 <div className="jumbotron">
