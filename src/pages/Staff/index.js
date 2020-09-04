@@ -1,6 +1,5 @@
 import { get } from "superagent";
 import React from "react";
-import "@fortawesome/fontawesome-free/css/all.css";
 
 const roles = {
     owner: "735044850155651093",
@@ -26,6 +25,7 @@ class Staff extends React.Component {
             isLoaded: true, staff, owners
         });
     }
+    
     render() {
         const { error, isLoaded, owners, staff } = this.state;
         if (error || !owners.list || !staff.list) {
